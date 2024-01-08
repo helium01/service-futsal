@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TempatFutsalController;
+use App\Http\Controllers\LapanganController;
+use App\Http\Controllers\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/lapangans', [LapanganController::class, 'index']);
+Route::get('/lapangans/{id}', [LapanganController::class, 'show']);
+Route::post('/lapangans', [LapanganController::class, 'store']);
+Route::put('/lapangans/{id}', [LapanganController::class, 'update']);
+Route::delete('/lapangans/{id}', [LapanganController::class, 'destroy']);
+
+
+Route::get('/tempat-futsals', [TempatFutsalController::class, 'index']);
+Route::get('/tempat-futsals/{id}', [TempatFutsalController::class, 'show']);
+Route::post('/tempat-futsals', [TempatFutsalController::class, 'store']);
+Route::put('/tempat-futsals/{id}', [TempatFutsalController::class, 'update']);
+Route::delete('/tempat-futsals/{id}', [TempatFutsalController::class, 'destroy']);
+
+Route::get('/pesanans', [PesananController::class, 'index']);
+Route::get('/pesanans/{id}', [PesananController::class, 'show']);
+Route::post('/pesanans', [PesananController::class, 'store']);
+Route::put('/pesanans/{id}', [PesananController::class, 'update']);
+Route::delete('/pesanans/{id}', [PesananController::class, 'destroy']);
+
