@@ -9,8 +9,17 @@ class TempatFutsalController extends Controller
 {
     public function index()
     {
-        $tempatFutsals = TempatFutsal::all();
+        $tempatFutsals = TempatFutsal::join('users','users.id','=','tempat_futsals.id_user')
+        ->select('users.name','tempat_futsals.*')
+        ->where('tempat_futsals.status','validasi')->get();
         return response()->json($tempatFutsals, 200);
+    }
+    public function user_valid($id)
+    {
+        $outlites = TempatFutsal::find($id);
+        $outlites->update(['status'=>'validasi']);
+
+        return response()->json($outlites, 200);
     }
 
     public function show($id)

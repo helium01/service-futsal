@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class LapanganController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $lapangans = Lapangan::all();
+        $lapangans = Lapangan::join('tempat_futsals','tempat_futsals.id','=','lapangans.id_tempat')
+        ->select('lapangans.*','tempat_futsals.*')
+        ->where('tempat_futsals.id_user',$id)->get();
         return response()->json($lapangans, 200);
     }
 
